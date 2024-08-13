@@ -39,7 +39,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Build APK with obfuscation
-        run: flutter build apk --obfuscate --split-debug-info=/home/kagwi/Download/log
+        run: flutter build apk --obfuscate --split-debug-info=log
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
