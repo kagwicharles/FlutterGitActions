@@ -39,3 +39,16 @@ jobs:
         with:
           name: app-release.apk
           path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Install curl
+        run: sudo apt-get install -y curl
+
+      - name: Upload APK to Diawi
+        run: |
+          curl -F "file=@build/app/outputs/flutter-apk/app-release.apk" \
+               -F "token=$DIAWI_TOKEN" \
+               -F "wall_of_apps=1" \
+               -F "comment=Uploaded via GitHub Actions" \
+               https://upload.diawi.com/
+        env:
+          DIAWI_TOKEN: ${{ secrets.DIAWI_TOKEN }}
